@@ -1,39 +1,44 @@
 import { useEffect, useState } from 'react'
 import { supabase } from './supabaseClient'
 import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import Contact from './components/Contact'
 import CategoryFilter from './components/CategoryFilter'
 import ProjectCard from './components/ProjectCard'
 
+
 function App() {
-  const [category, setCategory] = useState ('todos')
+  const [category, setCategory] = useState('todos')
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
     async function loadProjects() {
-      const { data, error} = await supabase
-      .from('projects')
-      .select('*')
-      .order('created_at', { ascending: false })
+      const { data, error } = await supabase
+        .from('projects')
+        .select('*')
+        .order('created_at', { ascending: false })
 
-      if (error) setError(error.message) 
-        else setProjects(data)
+      if (error) setError(error.message)
+      else setProjects(data)
       setLoading(false)
     }
-  
-    loadProjects()
-  },[])
-  
-  const visibleProjects = 
-    category === 'todos'
-    ? projects
-    : projects.filter((p) => p.category === category )
 
-      return (
+    loadProjects()
+  }, [])
+
+  const visibleProjects =
+    category === 'todos'
+      ? projects
+      : projects.filter((p) => p.category === category)
+
+  return (
     <>
       <Navbar />
+      <Hero />
       <main id="proyectos">
+        <h2>Proyectos</h2>
         <CategoryFilter selected={category} onChange={setCategory} />
 
         {loading && <p>Cargando proyectos...</p>}
@@ -48,6 +53,7 @@ function App() {
           ))}
         </section>
       </main>
+      <Contact />
     </>
   )
 }
