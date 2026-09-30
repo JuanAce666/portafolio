@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { supabase } from './supabaseClient'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import ParallaxBand from './components/ParallaxBand'
 import Contact from './components/Contact'
 import CategoryFilter from './components/CategoryFilter'
 import ProjectCard from './components/ProjectCard'
@@ -14,14 +15,14 @@ function App() {
   const [error, setError] = useState(null)
   const [route, setRoute] = useState(window.location.hash)
 
-  
+
   useEffect(() => {
     const onHashChange = () => setRoute(window.location.hash)
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
- 
+
   useEffect(() => {
     async function loadProjects() {
       const { data, error } = await supabase
@@ -35,7 +36,7 @@ function App() {
     }
 
     loadProjects()
-  }, [])
+  }, [route])
 
   const visibleProjects =
     category === 'todos'
@@ -48,6 +49,11 @@ function App() {
     <>
       <Navbar />
       <Hero />
+      <ParallaxBand
+        image="band-1.webp"
+        title="Aprender haciendo"
+        text="Cada proyecto es un laboratorio: código, bases de datos y seguridad."
+      />
       <main id="proyectos">
         <h2>Proyectos</h2>
         <CategoryFilter selected={category} onChange={setCategory} />
@@ -64,6 +70,11 @@ function App() {
           ))}
         </section>
       </main>
+      <ParallaxBand
+        image="band-2.webp"
+        title="Construyamos algo"
+        text="Si te interesa mi trabajo, escríbeme."
+      />
       <Contact />
     </>
   )

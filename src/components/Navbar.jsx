@@ -1,13 +1,15 @@
 function Navbar() {
-    return(
+  return (
     <header className="navbar">
-      <h1 className="logo">Mi Portafolio</h1>
+      <h1 className="logo">
+        MI<span>PORTAFOLIO</span>
+      </h1>
       <nav>
         <a href="#proyectos">Proyectos</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </header>
-    )
+  )
 }
 
 export default Navbar
