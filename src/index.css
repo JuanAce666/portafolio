@@ -207,3 +207,77 @@ main h2 {
     padding-top: 3rem;
   }
 }
+
+.admin {
+  max-width: 420px;
+  margin: 3rem auto;
+  padding: 0 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--muted);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.error {
+  color: #f87171;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+.admin-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface);
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+}
+
+.admin-list button {
+  background: transparent;
+  border: 1px solid #f87171;
+  color: #f87171;
+  border-radius: 6px;
+  padding: 0.2rem 0.7rem;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -5,14 +5,23 @@ import Hero from './components/Hero'
 import Contact from './components/Contact'
 import CategoryFilter from './components/CategoryFilter'
 import ProjectCard from './components/ProjectCard'
-
+import Admin from './pages/Admin'
 
 function App() {
   const [category, setCategory] = useState('todos')
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [route, setRoute] = useState(window.location.hash)
 
+  
+  useEffect(() => {
+    const onHashChange = () => setRoute(window.location.hash)
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
+
+ 
   useEffect(() => {
     async function loadProjects() {
       const { data, error } = await supabase
@@ -32,6 +41,8 @@ function App() {
     category === 'todos'
       ? projects
       : projects.filter((p) => p.category === category)
+
+  if (route === '#/admin') return <Admin />
 
   return (
     <>

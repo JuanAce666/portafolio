@@ -11,6 +11,9 @@ function Contact() {
         <li>
           <a href="mail:tu-correo@ejemplo.com">finnbl15yt@gmail.com</a>
         </li>
+        <li>
+            <a href="#/admin">Admin</a>
+        </li>
       </ul>
     </section>
   )
